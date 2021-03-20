@@ -1,0 +1,31 @@
+Metadata-Version: 2.1
+Name: arabic-reshaper
+Version: 2.1.1
+Summary: Reconstruct Arabic sentences to be used in applications that don't support Arabic
+Home-page: https://github.com/mpcabd/python-arabic-reshaper/
+Author: Abdullah Diab
+Author-email: mpcabd@gmail.com
+Maintainer: Abdullah Diab
+Maintainer-email: mpcabd@gmail.com
+License: MIT
+Download-URL: https://github.com/mpcabd/python-arabic-reshaper/tarball/master
+Keywords: arabic shaping reshaping reshaper
+Platform: ALL
+Classifier: Natural Language :: Arabic
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: future
+Requires-Dist: setuptools
+Requires-Dist: configparser ; python_version < "3"
+Provides-Extra: with-fonttools
+Requires-Dist: fonttools (>=3.0<4.0) ; (python_version < "3") and extra == 'with-fonttools'
+Requires-Dist: fonttools (>=4.0) ; (python_version >= "3") and extra == 'with-fonttools'
+
+UNKNOWN
+
+

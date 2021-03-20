@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Student Dashboard</title>
+  </head>
+  <body>
+    <div class="col-lg-12">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-12">
+    <div class="row">
+    <div class="col-lg-12 text-center mt-5">
+    <h4>Students Information</h4> <br>
+    </div>
+    <div class="col-lg-6 mt-5 mb-5">
+    <a href="{% url 'add' %}" class="btn btn-primary">Add New Student</a>
+    </div>
+    <div class="col-lg-6"></div>
+    </div>
+    </div>
+    <table class="table table-hover" style="height:300px; overflow-y:scroll; border-bottom:2px blue solid;">
+  <thead>
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Student ID</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Class</th>
+      <th scope="col">Marks</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in studs %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.classes}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.marks}}%</td>
+      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#demo{{i.id}}">
+<i class="fa fa-eye" aria-hidden="true"></i> View Details
+</button></td>
+      {% comment %} <td> <a href=""> </a></td> {% endcomment %}
+<div class="modal" id="demo{{i.id}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title"> {{i.name}} Information</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+<div class="modal-body">
+    <p> <b> Student Name </b>: {{i.name}}</p>
+    <p><b>Father's Name </b>: {{i.fname}}</p>
+    <p><b>Student Email </b>: {{i.email}}</p>
+    <p><b>Student phone </b>: {{i.phone}}</p>
+    <p><b>Class </b>: {{i.classes}}</p>
+    <p><b>DOB </b> : {{i.dob}}</p>
+    <p><b>Marks </b> : {{i.marks}}</p>
+    <p><b>Address </b>: {{i.address}}</p>
+    <p><b>City </b>: {{i.city}}</p>
+    <p><b>State </b>: {{i.state}}</p>
+    <p><b>Enrolled Date </b>: {{i.enrolled|date}}</p>
+    </div>
+  </div>
+  </div>
+</div>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<nav aria-label="Page navigation example text-center">
+{% if studs.has_other_pages %}
+  <ul class="pagination">
+    {% if studs.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ studs.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled page-item"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in studs.paginator.page_range %}
+      {% if studs.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if studs.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ studs.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</nav> 
+    </div>
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
